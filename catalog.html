@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Меню</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="img/main.svg">
+</head>
+<body>
+
+<!-- Навігаційна панель -->
+<header>
+    <nav class="navbar">
+
+        <div class="logo">
+                <a href="index.html">
+                    <img src="img/main.svg" alt="Totemo oishī">
+                    Totemo oishī
+                </a>
+            </div>
+            
+        <ul class="menu">
+            <li><a href="index.html">Головна</a></li>
+            <li><a href="catalog.html">МЕНЮ</a></li>
+            <li><a href="popular.html">Популярне</a></li>
+            <li><a href="author.html">Автор</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+
+<!-- Кошик -->
+<div class="cart-container" >
+    <h3>Ваш кошик</h3>
+    <ul id="cart-items">
+        <!-- Сюди JS буде додавати товари -->
+    </ul>
+    <p>Загальна сума: <span id="total-price">₴0</span></p>
+</div>
+
+<!-- Меню -->
+<div class="menu-container">
+    <h2>Меню Totemo oishī</h2>
+    <h1>гарячі страви</h1>
+    <div class="menu-grid">
+
+       
+
+         <div class="menu-item">
+            <img src="img/pokki.jpg" alt="Суші">
+            <h3>Ток-поккі</h3>
+            <p>Асорті зі свіжих інгредієнтів: цибуля зелена, тунець, авокадо.</p>
+            <p class="price">₴ 250</p>
+            <button class="btn add-btn">Додати</button>
+        </div>
+
+         <div class="menu-item">
+            <img src="img/ramen1.jpg" alt="Суші">
+            <h3>Рамен з свининою</h3>
+            <p>Асорті зі свіжих інгредієнтів: свинина, перець червоний, авокадо.</p>
+            <p class="price">₴ 300</p>
+            <button class="btn add-btn">Додати</button>
+        </div>
+
+         <div class="menu-item">
+            <img src="img/ramen.jpg" alt="Суші">
+            <h3>Рамен з телятиною</h3>
+            <p>Асорті зі свіжих інгредієнтів: телятина, корейська морква, авокадо.</p>
+            <p class="price">₴ 200</p>
+            <button class="btn add-btn">Додати</button>
+        </div>
+
+         <div class="menu-item">
+            <img src="img/sushi.jpg" alt="Суші">
+            <h3>Суші сет</h3>
+            <p>Асорті зі свіжих інгредієнтів: лосось, тунець, авокадо.</p>
+            <p class="price">₴ 150</p>
+            <button class="btn add-btn">Додати</button>
+        </div>
+
+        
+    </div>
+
+       
+</div>
+    
+
+
+
+<!-- напої -->
+<div class="menu-container">
+   
+    <h1>Напої</h1>
+    <div class="menu-grid">
+
+       
+
+         <div class="menu-item">
+            <img src="img/coctail.jpg" alt="Суші">
+            <h3>Фруктові коктейлі</h3>
+            <p>Асорті зі свіжих інгредієнтів: лимон, сироп, полуниця.</p>
+            <p class="price">₴ 120</p>
+            <button class="btn add-btn">Додати</button>
+        </div>
+
+         <div class="menu-item">
+            <img src="img/coffee.jpg" alt="Суші">
+            <h3>Латте</h3>
+            <p>Асорті зі свіжих інгредієнтів: кава, сироп, безлактозне молоко.</p>
+            <p class="price">₴ 80</p>
+            <button class="btn add-btn">Додати</button>
+        </div>
+
+         <div class="menu-item">
+            <img src="img/tea.jpg" alt="Суші">
+            <h3>Японський чай</h3>
+            <p>Асорті зі свіжих інгредієнтів: зелений чай.</p>
+            <p class="price">₴ 50</p>
+            <button class="btn add-btn">Додати</button>
+        </div>
+
+         <div class="menu-item">
+            <img src="img/juice.jpg" alt="Суші">
+            <h3>Сік</h3>
+            <p>Асорті зі свіжих інгредієнтів: апельсин, яблуко, полуниця.</p>
+            <p class="price">₴ 250</p>
+            <button class="btn add-btn">Додати</button>
+        </div>
+
+        
+    </div>
+
+       
+</div>
+
+
+
+
+<!-- JS -->
+<script>
+let cart = [];
+let total = 0;
+
+// Всі кнопки "Додати"
+const addButtons = document.querySelectorAll('.add-btn');
+
+addButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const menuItem = this.closest('.menu-item');
+        const name = menuItem.querySelector('h3').textContent;
+        const priceText = menuItem.querySelector('.price').textContent;
+        const price = parseFloat(priceText.replace(/[^\d]/g, ''));
+
+        // Додаємо в кошик
+        cart.push({name, price});
+        total += price;
+
+        // Оновлюємо відображення кошика
+        const cartList = document.getElementById('cart-items');
+        cartList.innerHTML = '';
+        cart.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = `${item.name} - ₴${item.price}`;
+            cartList.appendChild(li);
+        });
+
+        document.getElementById('total-price').textContent = `₴${total}`;
+    });
+});
+</script>
+
+
+
+<!--  ФУТЕР  -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>Totemo oishī © 2025</p>
+            <div class="socials">
+                <a href="https://www.instagram.com/accounts/onetap/?next=%2Ffxcal%2Fdisclosure%2F%3Fnext%3D%252F">Instagram</a>
+                <a href="https://www.facebook.com/">Facebook</a>
+                <a href="https://www.facebook.com/login.php?next=https%3A%2F%2Fwww.facebook.com%2Foidc%2F%3Fapp_id%3D124024574287414%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignupviafb%252F%26response_type%3Dcode%26scope%3Dopenid%2Bemail%2Bprofile%2Blinking%26state%3DATlDTyOwSuRVBrCX3zzAMYUeU9JwSlKVhf8bvyECfKa6wJeKQQbCLyGVg5xyvhsLwalyVmocNH8ygTImiI9w-oKohU8BUMubuqvFOyRg055YMqJryiS559Q5LZtDKZN1kWeHzXJ-8aOymnQZrBfT9rXGq_0TAWxDkI5lNv1xf20MqUY5yVtVG5nqtbnE9p8gx_lHuK_tvG-qy4sBcZjgCSJw5kU4Q2BIaWKBJNF_BYCaUhVE5i0OAIXe8xehrAd5J7qt">Twitter</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
